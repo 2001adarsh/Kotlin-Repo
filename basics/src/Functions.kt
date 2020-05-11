@@ -1,3 +1,5 @@
+import kotlin.reflect.jvm.internal.impl.incremental.components.LookupTracker
+
 /*
     Types of functions:
     1. Positional Arguments
@@ -12,6 +14,10 @@ fun main(){
     named(id = 12, name = "Adarsh", flag = false)
 
     countAndPrintArgs(1,2,3,4,5)
+
+    higherOrder("Singh" ){
+        //giving the body of doNothing
+    }
 }
 
 fun square(num:Int):Int{
@@ -31,4 +37,14 @@ fun countAndPrintArgs( vararg num:Int){
     println(num.size)
     for (a in num)
         print(a)
+}
+
+//Higher Order Fuctions
+fun higherOrder(name: String, doNothing:(flag:Boolean) -> Unit):String{
+    if(name.equals("Singh")){
+        doNothing(true)
+    }else{
+        doNothing(false)
+    }
+    return "Adarsh $name"
 }
