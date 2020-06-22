@@ -1,4 +1,5 @@
 import javafx.application.Application.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.*
 
 val num = ArrayList<Int>()
@@ -7,9 +8,11 @@ fun main(){
         num.add(i)
     }
     runBlocking {  //main with end only after threads end
-        launch{ PrintList("1") }
-        launch{ PrintList("2") }
-        launch{ PrintList("3") }
+        GlobalScope.launch(Dispatchers.Default) {
+            launch{ PrintList(id = "1") }
+            launch{ PrintList(id = "2") }
+            launch{ PrintList(id = "3") }
+        }
     }
 }
 
